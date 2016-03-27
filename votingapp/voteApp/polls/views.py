@@ -89,14 +89,15 @@ def vote(request):
 	if request.user.is_authenticated():
 		choice = get_object_or_404(Choice, pk=request.data['cid'])
 		question = get_object_or_404(Question, pk=request.data['qid'])
-		obj, created = alreadyVoted.objects.get_or_create(
-		                                                  user=request.user,
-		                                                  ques=question)
-		if created:
+		obj = alreadyVoted.objects.filter(user=request.user, ques=question)
+		if len(obj) == 0:
+			alreadyVoted.objects.create(user=request.user, ques=question,
+			                            selection=choice)
 			choice.votes += 1
 			choice.save()
 			return Response({'status':'Your vote has been cast'},
 			                status=status.HTTP_200_OK)
+
 		else:
 			return Response({'status':"You have already voted here"})
 	else:
