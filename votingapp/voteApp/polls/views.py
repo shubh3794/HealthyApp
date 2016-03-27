@@ -91,8 +91,7 @@ def vote(request):
 		question = get_object_or_404(Question, pk=request.data['qid'])
 		obj, created = alreadyVoted.objects.get_or_create(
 		                                                  user=request.user,
-		                                                  ques=question,
-		                                                  selection=choice)
+		                                                  ques=question)
 		if created:
 			choice.votes += 1
 			choice.save()
