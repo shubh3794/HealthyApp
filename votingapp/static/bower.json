@@ -1,0 +1,26 @@
+{
+  "name": "VoteApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shubh3794/Voting-App",
+  "description": "A simple voteApp called Votopinion",
+  "main": "index.html",
+  "moduleType": [],
+  "authors": [
+    "Shubham"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#^0.97.5",
+    "angular": "^1.4.9",
+    "angular-route": "^1.5.0",
+    "font-awesome": "fontawesome#^4.5.0",
+    "satellizer": "^0.14.0"
+  }
+}

@@ -1,0 +1,190 @@
+<div ng-controller="navbarController">
+<nav class="deep-orange darken-4">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo left hide-on-med-and-down">iVote</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li ng-if="!isLoggedIn"><a ng-click="openModal(1)" >Login</a></li>
+      <li ng-if="isLoggedIn"><a ng-click="logout()" >Logout</a></li>
+      <li ng-if="isLoggedIn"><a href="/profile" >Profile</a></li>
+      <li><a ng-click="openModal(4)" >Create Poll</a></li>
+      </ul>
+     </div>
+ </nav>
+ <!-- LOGIN & SIGNUP MODAL -->
+
+<div id="modal1" class="modal">
+<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
+    <div class="modal-content">
+    
+            <div ng-if='modal1 && !modal2 && !modal3 && !modal4'>
+            <br>
+            <h4 class="center">Welcome</h4>
+            <br>
+            
+            <!-- LOGIN VIA SOCIAL MEDIA -->
+            
+            <div class="center">
+                <a class="btn waves-effect waves-light deep-orange darken-4" ng-click="Auth('facebook')">Log In with FACEBOOK</a>
+                
+            </div>
+             <br>
+
+            <p class="center-align">OR</p>
+        
+            <div class="row"> <!-- LOGIN FOR EMPTY FIELDS -->
+                <div class="col s12">
+                    <p class="messages" ng-show="loginError">{{ loginError }}</p>
+                </div>
+            </div>
+    
+            <form ng-submit="login(username, password)" name="myForm">
+                <div class="input-field"> <!-- USERNAME -->
+                    <input id="first_name" type="email" class="form-control validate" ng-model="username" >
+                    <label for="first_name">Email</label>
+                </div>
+                
+                <div class="input-field"> <!-- PASSWORD-->
+                    <input id="password" type="password" class="form-control validate" ng-model="password" >
+                    <label for="first_name">Password</label>
+                </div>
+                <br>
+                
+                <div class="center-btn"> <!-- SUBMIT BUTTON -->
+                    <button type="submit" class="btn waves-effect waves-light deep-orange darken-4">Login</button>
+                </div>
+                <br>
+                <a ng-click="switchToModal(3)" class="black-text">Forgot your password or username?</a>
+            </form>
+          <p class="black-text">Don't have an account? <a ng-click="switchToModal(2)">Sign Up Now</a></p>
+
+        </div>   <!-- END OF LOGIN CONTENT -->
+
+
+    <!-- SIGNUP CONTENT -->
+    
+    <div ng-if='!modal1 && modal2 && !modal3 && !modal4'>
+        <h5 class="center-align">Welcome</h5>
+            <br>
+        <div class="center">
+            <a class="btn waves-effect waves-light deep-orange darken-4" ng-click="Auth('facebook')">Sign Up with FACEBOOK</a>
+        </div>
+         <br>
+        
+        <p class="center-align">OR</p>
+
+        <div class="row"> <!-- LOGIN FOR EMPTY FIELDS -->
+                <div class="col s12">
+                    <p class="notifier" ng-show="signUpMessage">{{ signUpMessage }}</p>
+                </div>
+            </div>
+
+        <form ng-submit="register(signupusername, signupregisterPassword, signupemail)" name="myForm">
+            <div class="row"> <!-- WARNINGS FOR EMPTY FIELD-->
+                <div class="col s12">
+                 <p class="messages" ng-show="signUpError">{{ signUpError }}</p> 
+                </div>
+            </div>
+            
+            <!-- USERNAME -->
+            
+             <div class="row">
+              <div class="input-field col m12">
+                <input class="validate" id="input_name" type="text" ng-model="signupusername" length="100" required />
+                <label for="input_name" data-error="Atmost 10 characters">Username</label>
+              </div>
+            </div>
+            
+            
+            <!-- EMAIL -->
+            
+            <div class="row">
+                <div class="input-field col m12">
+                  <input name="emailId" id="email" type="email" class="form-control validate" ng-model="signupemail" required /> 
+                <label for="email" data-error="Invalid Email Id">Email</label>
+                </div>
+            </div>
+            
+            <!-- PASSWORD -->
+            
+             <div class="row">
+              <div class="input-field col m12">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="registerPassword" ng-model="signupregisterPassword" required  />
+                <br>
+              </div>
+            </div>
+                
+            <!-- CONFIRM PASSWORD -->
+
+            <br>
+            
+            <!-- CONTINUE BUTTON -->
+            
+            <div class="center-btn">
+                <button id="continueToForm2" type="submit" class="btn waves-effect waves-light deep-orange darken-4" >SignUp</button>
+            </div>
+        </form>
+    </div>
+        
+          
+        <!-- FORGOT PASSWORD CONTENT -->
+
+       
+        <div ng-if="!modal1 && !modal2 && modal3 && !modal4">
+            <h5 class="center">Forgot your password</h5>
+            <br><br>
+            <p>Enter your email or username below and we will send you a link to reset your password</p>
+            <span class="teal">{{Message}}</span>
+            <form ng-submit="resetPassword(forgotemail)" name="myForm"> 
+           <div class="row">
+              <div class="input-field col m12">
+                 <input name="emailId" id="email" type="email" class="form-control validate" ng-model="forgotemail" required /> 
+                <label for="email" data-error="Invalid Email Id">Email</label>
+              </div>
+            </div>
+                 
+                <br>
+
+            <br>
+            
+            <!-- CONTINUE BUTTON -->
+            
+            <div class="center-btn">
+                <button id="continueToForm2" type="submit" class="btn waves-effect waves-light deep-orange darken-4" >ResetPassword</button>
+            </div>
+        </form>
+        </div>
+        
+
+        <!-- ENTER OTHER DETAILS OF THE USER -->
+    
+    <div ng-if='!modal1 && !modal2 && !modal3 && modal4 && isLoggedIn'>
+      <h4>Create a Poll</h4>
+      <form ng-submit="create" name="myForm">
+    <span>Enter the poll</span><br>
+    <input type = 'text' name = 'newques' id = 'newques' maxlength="2000" ng-model="questionModel"required/>
+    <span>Add choices</span><br>
+    <ul id="choice_list">
+    <li><input type = 'text' name = 'choice' id = 'choice' ng-model="choice[0]" required/></li>
+      <li><input type = 'text' name = 'choice' id = 'choice' ng-model = "choice[1]" required/></li>
+</ul>
+      <a class="btn waves-effect waves-light deep-orange darken-4" ng-click="addToList()">Add
+    <i class="add"></i> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" ng-click="createQues(questionModel)">Submit
+    <i class="material-icons right">send</i></button>
+    </form>
+    <br>
+    <br>
+    <div ng-if="message != null && message != undefined" class="notifier">{{message}}</div>
+      </div>  
+
+      <div ng-if='!modal1 && !modal2 && !modal3 && modal4 && !isLoggedIn'>
+      <h4>Login to create a poll</h4>
+        
+      </div>
+    </div>
+ </div>
+</div>
+
+
+

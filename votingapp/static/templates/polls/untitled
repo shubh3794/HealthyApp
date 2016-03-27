@@ -1,0 +1,103 @@
+<!-- <div class="nav-wrapper">
+      <a href="/" class="brand-logo left hide-on-med-and-down">iVote</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {% if not request.user.is_authenticated %}
+        <li><a href={% url 'auuth:login' %}>Login</a></li>
+        <li><a href={% url 'auuth:signup' %}>Signup</a></li>
+        <li><a href={% url 'auuth:login' %}>Create Poll</a></li>
+        
+      {% else %}
+      <li><a href={% url 'polls:profile' %}>Profile</a></li> 
+        <li><a href={% url 'auuth:logout' %}>Logout</a></li>
+        <li><a href='#modal1' class="modal-trigger">Create Poll</a></li>
+      
+      {% endif %}
+
+      
+
+      
+      </ul>
+      <ul class="right hide-on-large-only">
+      {% if not request.user.is_authenticated %}
+        <li><a href= {% url 'auuth:login' %}>Login</a></li>
+        <li><a href={% url 'auuth:signup' %}>Signup</a></li>
+      <li><a href={% url 'auuth:login' %}><i class="material-icons w">edit</i></a></li>
+      {% else %}
+        <li><a href={% url 'auuth:logout' %}>Logout</a></li>
+      <li><a href={% url 'polls:profile' %}>Profile</a></li> 
+      <li><a href="#modal1" class="modal-trigger"><i class="material-icons w">edit</i></a></li>
+      {% endif %}
+      
+      </ul>
+    </div> -->
+
+<!--     {% block content %}
+<div id="modal1" class="modal">
+    <div class="modal-content">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
+      <h4>Create a Poll</h4>
+      <form action ={% url 'polls:create' %} method = 'post'>
+    {% csrf_token %}
+    <span>Enter the poll</span><br>
+    <input type = 'text' name = 'newques' id = 'newques' maxlength="2000" required/>
+    <span>Add choices</span><br>
+    <ul id="choice_list">
+    <li><input type = 'text' name = 'choice' id = 'choice' required/></li>
+      <li><input type = 'text' name = 'choice' id = 'choice' required/></li>
+</ul>
+      <a class="btn waves-effect waves-light deep-orange darken-4" onclick="addTolist()">Add
+    <i class="add"></i> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+    </form>
+    </div>
+      
+</div>
+{% endblock %} -->
+<!-- 
+ {% block script %}
+ <script>
+
+</script>
+{% endblock %} -->
+
+
+<!-- <div class="content">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if latest_question_list %}
+
+{% endif %}
+</div> -->
+
+
+
+<ul class="collection">
+  {% for question in voted %}
+    <li class="collection-item avatar">
+<!--       <img src="images/yuna.jpg" alt="" class="circle"> -->
+      <span class="title big">{{ question.question_text |capfirst}}</span>
+      <p class="small"> by : <a href="#">{{question.createdby|capfirst}}</a>
+      </p>
+       <span class="secondary-content"><i class="material-icons tooltipped" data-tooltip="already casted a vote">done</i>&nbsp;&nbsp;&nbsp;<a href = "{% url 'polls:details' question.id %}"><i class="material-icons tooltipped" data-tooltip="View?">visibility</i></a></span>
+    </li>
+    {% endfor %}
+    </ul>
+
+
+<ul class="collection">
+  {% for question in created %}
+    <li class="collection-item avatar">
+<!--       <img src="images/yuna.jpg" alt="" class="circle"> -->
+      <span class="title big">{{ question.question_text |capfirst}}</span>
+      <p class="small"> by : <a href="#">{{question.createdby|capfirst}}</a>
+      </p>
+       <span class="secondary-content"><a href = "{% url 'polls:details' question.id %}"><i class="material-icons tooltipped" data-tooltip="View?">visibility</i></a></span>
+    </li>
+    {% endfor %}
+    </ul>

@@ -1,0 +1,27 @@
+{% load staticfiles%}
+ <nav class="deep-orange darken-4">
+    <div class="nav-wrapper">
+      <a href="/polls" class="brand-logo left hide-on-med-and-down">iVote</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {% if not request.user.is_authenticated %}
+        <li><a href='{% static "templates/polls/login.html" %}'>Login</a></li>
+        <li><a href='{% static "templates/polls/signup.html" %}'>Signup</a></li>
+      {% else %}
+        <li><a href={% url 'auuth:logout' %}>Logout</a></li>
+      {% endif %}
+      <li><a href="#modal1" class="modal-trigger">Create Poll</a></li>
+
+        
+      </ul>
+      <ul class="right hide-on-large-only">
+      {% if not request.user.is_authenticated %}
+        <li><a href= 'login.html'><i class="material-icons">account_circle</i></a></li>
+        <li><a href='signup.html'><i class="material-icons">person_add</i></a></li>
+      {% else %}
+        <li><a href={% url 'auuth:logout' %}>Logout</a></li>
+      {% endif %}
+      <li><a "#modal1" class="modal-trigger"><i class="material-icons">edit</i></a></li>
+      </ul>
+    </div>
+  </nav>
+

@@ -1,0 +1,21 @@
+{
+  "name": "VoteApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shubh3794/Voting-App",
+  "description": "A simple voteApp called Votopinion",
+  "main": "index.html",
+  "moduleType": [],
+  "authors": [
+    "Shubham"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.5"
+  }
+}

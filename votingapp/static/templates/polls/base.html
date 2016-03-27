@@ -1,0 +1,29 @@
+<div class="jumbotron col s12 m12 l12">
+  <div ng-include="'static/templates/polls/navbar.html'"></div>
+<div id="tinted-image" class="col s12 m12 l12 valign-wrapper">
+<p class="valign center-align">Cast your opinion with iVote<br/><span class="center-align"id="valign2">Simple&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Easily Available&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Fast<br/></span></p><br>
+</div>
+</div>
+<div class="container">
+<div class="content">
+
+<div ng-if="Polls">
+<ul class="collection">
+    <li class="collection-item avatar" ng-repeat="question in Polls track by $index">
+      <span class="title big"><a ng-href="/detail/{{question.id}}/">{{ question.question_text}}</a></span>
+       <span class="secondary-content">
+       <i ng-if="checkIfVoted(Polls[$index].id)" class="material-icons tooltipped" data-tooltip="View" title="Already voted here">done</i>
+       <a class="tooltipped" data-tooltip="View" title="View?" ng-href="/detail/{{question.id}}/">
+       <i class="material-icons">visibility</i>
+       </a>
+       </span>
+        
+    </li>
+</ul>
+</div>
+    <p ng-if="Polls==undefined">No polls are available. Please try again or {{err}}</p>
+
+
+</div>
+
+</div>

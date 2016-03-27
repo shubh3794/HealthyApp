@@ -1,0 +1,66 @@
+.container{
+	width:80% !important;
+	font-size:18px !important;
+	color:black !important;
+	border-radius:5px;
+	background:white;
+	font-family:Roboto;
+
+
+}
+.brand-logo{
+	margin-left:20px;
+}
+#list-anchors{
+	color:#424242!important;
+	font-weight:bold;
+}
+.responsive-img{
+	opacity:0.2;
+}
+
+#tinted-image{
+	background-color:rgba(0,0,0,0.8);
+	min-height:350px;
+	color:white;
+	text-align:center !important;
+}
+#tinted-image p.valign{
+	font-size:25px;
+	font-weight:600;
+	font-family:Circular, sans-serif;
+	letter-spacing: -0.01em;
+	width:100%;
+}
+#tinted-image #valign2{
+	font-size:15px;
+	font-weight:300;
+	color:#eaeaea;
+	font-family:Circular, sans-serif;
+	letter-spacing: -0.01em;
+}
+.jumbotron{
+	background: url("../img/bg.jpg") no-repeat 50% 50%;
+	background-size:cover !important;
+}
+.content{
+	margin-top:-150px;
+	z-index:111;
+	opacity:1;
+	position:relative;
+	background:white;
+	border-radius:4px;
+	min-height:500px;
+}
+#btn-flt{
+	color:white;
+	border:2px solid white;
+	padding:5px;
+	font-size:18px;
+	font-weight:300;
+	border-radius:3px;
+}
+.icon-add{
+	font-size:18px !important;
+	font-weight:500 !important;
+}

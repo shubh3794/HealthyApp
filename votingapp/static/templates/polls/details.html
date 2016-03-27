@@ -1,0 +1,22 @@
+<div class="jumbotron col s12 m12 l12">
+  <div ng-include="'static/templates/polls/navbar.html'"></div>
+ </div>
+
+<br>
+<br>
+<div class = "card detailcard" id="defaultV">
+<div ng-if="message" class="notifier">{{message}}</div>
+<h3 class="big">{{ question.question_text }}</h3>
+<form>
+
+<div class="row" ng-repeat="choice in question.choices">
+    <input type = 'radio' name = 'choice' ng-model="choicess" value = "{{choice.id}}" id="{{choice.id}}" ng-click="try(choicess)"/>
+    <label for="{{choice.id}}">{{choice.choice_text}} </label><br/>
+</div>
+<br>
+	<p class = "notifier" ng-if="isAlreadyVoted(question.id)"><strong>&nbsp;&nbsp; You have already voted here. <a href="/">Chose other question!</a></strong></p>
+  <button ng-if="!isAlreadyVoted(question.id)" class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action" ng-click="tryo(question.id)">Submit
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+</div>

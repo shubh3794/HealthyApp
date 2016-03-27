@@ -1,0 +1,22 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+<h1>Login</h1>
+<div class="row">
+  <div class="col s12 m6 push-m3">
+    <div class="card-panel grey lighten-2">
+      <form action = {% url 'auuth:login' %} method = 'post'>
+		{% csrf_token %}
+		<input id="email" type="email" class="validate" name="email">
+        <label for="email" data-error="wrong" data-success="right">Email</label>
+        <input id="password" type="password" name="password">
+        <label for="password">Password</label>
+<br>
+<br>
+  <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action">Login
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+    </div>
+  </div>
+</div>
+{% endblock %}

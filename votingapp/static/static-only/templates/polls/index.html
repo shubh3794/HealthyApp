@@ -1,0 +1,58 @@
+{% extends 'polls/base.html' %}
+{% load staticfiles %}
+{% block jumbotron %}
+<div id="tinted-image" class="col s12 m12 l12 valign-wrapper">
+<p class="valign center-align">Cast your opinion with iVote<br/><span class="center-align"id="valign2">Simple&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Easily Available&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Fast<br/></span></p><br>
+</div>
+{% endblock %}
+ {% block script %}
+ <script>
+var addTolist = function(){
+  $('#choice_list').append("<li><input type = 'text' name = 'choice' id = 'choice'/></li>");
+};
+</script>
+{% endblock %}
+
+{% block jquery %}
+$('.modal-trigger').leanModal();
+  $('#modal1').openModal();
+  $('#modal1').closeModal();
+          
+{% endblock %}
+{% block content %}
+<br>
+ 
+ <br>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
+      <h4>Create a Poll</h4>
+      <form action ={% url 'polls:create' %} method = 'post'>
+    {% csrf_token %}
+    <span>Enter the poll</span><br>
+    <input type = 'text' name = 'newques' id = 'newques' maxlength="2000" required/>
+    <span>Add choices</span><br>
+    <ul id="choice_list">
+    <li><input type = 'text' name = 'choice' id = 'choice' required/></li>
+      <li><input type = 'text' name = 'choice' id = 'choice' required/></li>
+</ul>
+      <a class="btn waves-effect waves-light deep-orange darken-4" onclick="addTolist()">Add
+    <i class="add"></i> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+    </form>
+    </div>
+      
+</div>
+<div class="content">
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a id="list-anchors" href="{% url 'polls:details' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</div>
+{% endblock %}

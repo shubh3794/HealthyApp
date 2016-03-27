@@ -1,0 +1,27 @@
+<div class="jumbotron col s12 m12 l12">
+  <div ng-include="'static/templates/polls/navbar.html'"></div>
+ </div>
+
+<br>
+<br>
+
+<div id="defaultV">
+<h4>{{ question.question_text }}</h4>
+
+<ul class="collection">
+    <li class="collection-item avatar" ng-repeat="choice in question.choices track by $index">{{ choice.choice_text }} -- {{ choice.votes }} votes
+    <br>
+    <br>
+    <span class="bold" ng-if="question.choices[$index].vote.length>0">VOTERS</span>
+    <ul >
+    <li ng-repeat="voter in question.choices[$index].vote track by $index"><a ng-href="/dashboard/{{voter.user}}/">User{{ voter.user }}</a></li>
+
+    </ul>
+
+    <br>
+    </li>
+
+
+</ul>
+</div>
+

@@ -1,0 +1,52 @@
+<div class="jumbotron col s12 m12 l12">
+  <div ng-include="'static/templates/polls/navbar.html'"></div>
+<div class="tinted-image" class="col s12 m12 l12 valign-wrapper">
+  <img ng-src='{{Profile.social_thumb}}' alt="" class="valign circle responsive-img"/>
+  <p class="valign center-align profile-font">{{Profile.username}}<br/>{{Profile.email}}<br/></p>
+</div>
+</div>
+<div class="container">
+<div class="content">
+
+<div class = "row">
+<div class="col s12 m6">
+<h5 class="profilehead1 center-align">Questions voted on</h5>
+<ul class="collection">
+    <li class="collection-item avatar" ng-repeat="question in votedQues track by $index">
+      <span class="title big"><a ng-href="/detail/{{question.id}}/">{{ question.question_text}}</a></span>
+       <span class="secondary-content">
+       <i ng-if="checkIfVoted(Polls[$index].id)" class="material-icons tooltipped" data-tooltip="View" title="Already voted here">done</i>
+       <a class="tooltipped" data-tooltip="View" title="View?" ng-href="/detail/{{question.id}}/">
+       <i class="material-icons">visibility</i>
+       </a>
+       </span>
+        
+    </li>
+</ul>
+
+
+</div>	
+<div class="col s12 m6">
+<h5 class="profilehead1 center-align">Questions asked</h5>
+<ul class="collection">
+    <li class="collection-item avatar" ng-repeat="question in Profile.created track by $index">
+      <span class="title big"><a ng-href="/detail/{{question.id}}/">{{ question.question_text}}</a></span>
+       <span class="secondary-content">
+       <a class="tooltipped" data-tooltip="View" title="View Result" ng-href="/results/{{question.id}}">
+       <i class="material-icons">insert_chart</i>
+       </a>
+       <i ng-if="checkIfVoted(Polls[$index].id)" class="material-icons tooltipped" data-tooltip="View" title="Already voted here">done</i>
+       <a class="tooltipped" data-tooltip="View" title="View?" ng-href="/detail/{{question.id}}/">
+       <i class="material-icons">visibility</i>
+       </a>
+       </span>
+        
+    </li>
+</ul>
+
+</div>
+
+
+</div>
+
+</div></div>

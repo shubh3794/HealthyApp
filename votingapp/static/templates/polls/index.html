@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="projApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="/" />
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Votopinia</title>
+    
+
+    <!-- core CSS -->
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link href= '{% static "bower_components/Materialize/dist/css/materialize.min.css" %}' rel="stylesheet" type="text/css"/>
+    <link rel='stylesheet' href='{% static "css/main.css" %}' type="text/css"/>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  </head>
+
+  <body role="document" ng-cloak>
+
+  <div ng-view></div>
+      
+
+
+
+<!--     Javascripts files for ajs routing and frontend func
+ -->    
+
+ {% include 'javascripts.html' %}
+
+<!--  Scipt to trigger modal on click
+ -->
+
+    <script>
+    $(document).ready(function(){
+
+        
+    });
+    </script>
+  </body>
+</html>
