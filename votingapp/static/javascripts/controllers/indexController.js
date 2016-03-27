@@ -37,7 +37,7 @@ app.controller('resetController', ['$scope', '$window', '$location','httpService
                  $scope.resetPasswordConfirm = function(pwd, confirm){
                   var uid = $routeParams.uid;
                   var activation_key = $routeParams.activation_key;
-                  var url = 'auth/set/password/reset/confirm/';
+                  var url = 'authentication/password/reset/confirm/';
                   httpService.httpPost(url, {
                     'uid':uid,
                     'token':activation_key,
